@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
 # Heroku uses ruby 1.9.2, incompatible with mongodb
-source "https://rubygems.org"
-ruby "1.9.3"
+group :production do
+  source "https://rubygems.org"
+  ruby "1.9.3"
+end
 
 gem 'rails'
 
@@ -14,9 +16,7 @@ gem 'will_paginate'
 gem 'mongoid', '3.0.5'
 gem 'geocoder', '1.1.5' # Has to be AFTER mongoid
 gem 'gmaps4rails'
-# group :production do
-#   gem 'pg'
-# end
+
 group :development do
   gem 'annotate'
   gem 'faker'
