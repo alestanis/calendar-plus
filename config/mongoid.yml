@@ -7,6 +7,7 @@ development:
 production:
   sessions:
     default:
-      database: mongoid
-      hosts:
-        - calendar-plus.herokuapp.com:27017
+      uri: <%= ENV['MONGOHQ_URL'] %>
+      options:
+        skip_version_check: true
+        safe: true
