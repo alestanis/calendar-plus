@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar+</title>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLdRrC2VpwCYibVGSfpm9rgMvH5s9ULLY&sensor=true"></script>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <!-- Header -->
+  <!-- End header -->
+
+  <!-- Navigation bar -->
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <a class="brand" href="#">Calendar+</a>
+      <ul class="nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      
+      <!-- Signup -->
+      <ul class="nav pull-right">
+      <% if current_user %>
+        <li><div class="navbar-text">Signed in as <%= current_user.name %>!</div></li>
+        <li><%= link_to "Sign out", signout_path %></li>
+      <% else %>
+        <li><%= link_to "Sign up with Google!", "auth/google_oauth2" %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div> <!-- End navigation bar -->
+
+  <!-- Content -->
+  <!-- <div class="container-fluid"> -->
+  <%= yield %>
+  <!-- </div> -->
+  <!-- End content -->
+
+  <!-- Footer -->
+  <div class="container-fluid debug">
+    <%= debug(params) if Rails.env.development? %>
+  </div>
+  <!-- End footer -->
+
+</body>
+</html>

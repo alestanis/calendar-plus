@@ -1,0 +1,49 @@
+@import "bootstrap";
+
+#wrapper {
+  position: relative;
+}
+
+@mixin debug {
+  visibility: hidden;
+}
+
+@mixin stretch {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: -1;
+}
+
+.container-fluid {
+  padding: 0px;
+}
+
+.debug {
+  @include debug;
+}
+
+.debug-margin {
+  @include debug;
+  margin-top: 800px;
+}
+
+.margins {
+  margin: 1%;
+  max-height: 90%;
+  overflow: auto;
+}
+
+.stretch-nav {
+  @include stretch;
+  bottom: 0px;
+  margin-top: 40px;
+  clear: both;
+}
+
+.stretch {
+  @include stretch;
+  height: 100%;
+}

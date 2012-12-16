@@ -1,0 +1,70 @@
+<div class="container-fluid stretch-nav">
+  <!-- <div class="row-fluid"> -->
+  
+  <div class="span4 well pull-right margins">
+    <% if current_user %> 
+    <h3> Today's events are: </h3>
+      <% if @events.length > 0 %>
+        <table class="table table-condensed">
+        <thead><th>What?</th><th>When?</th><th>Where?</th></thead>
+        <tbody>
+        <% @events.each do |event| %>
+          <tr>
+          <td><%= event.summary %></td>
+          <td><% if event.start %>
+            <%= event.start %> to <%= event.end %>
+          <% end %></td>
+          <td><%= event.location %></td>
+          </tr>
+        <% end %>
+        </tbody>
+        </table>
+      <% else %>
+      <p> You have no events scheduled for today. </p>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <!-- Map -->
+  <% if current_user %>   
+    <%= gmaps(#"markers" => {"data" => @markers.to_json},
+      "map_options" => { :container_class => "stretch",
+                         :class => "stretch",
+                         :raw => '{ scrollwheel: false, mapTypeControl: false }' },
+      "direction" => { "data"    => { "from" => @marker_coords[0], "to" => @marker_coords[0] } , 
+                       "options" => { "waypoints" => @marker_coords.drop(1),
+                                       "display_panel" => true, 
+                                       "panel_id" => "instructions" } }
+    ) %>
+  <% else %>
+    <%= gmaps("markers" => {"data" => [].to_json},
+      "map_options" => { :container_class => "stretch",
+                         # :class => "stretch",
+                         :raw => '{ scrollwheel: false }' }
+    ) %>
+  <% end %>
+  <!-- End map -->
+  
+  <!-- </div> -->
+</div>
+
+<div class="container-fluid debug-margin">       
+<% if current_user %> 
+  <p> User token is <code><%= current_user.token %></code></p>
+  </br>
+  
+  <p>Calendar list is:
+  <code>
+  <%= @calendars %>
+  </code>
+  </p>
+  
+  <p>
+  First id is: <code><%= @calendar %></code>
+  </p>
+       
+  <%= yield :scripts %>
+<% else %>
+
+<% end %>
+</div> <!-- End container -->
