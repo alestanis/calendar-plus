@@ -4,3 +4,9 @@ development:
       database: mongoid
       hosts:
         - localhost:27017
+production:
+  sessions:
+    default:
+      database: mongoid
+      hosts:
+        - calendar-plus.herokuapp.com:27017
