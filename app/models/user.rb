@@ -14,8 +14,10 @@ class User
 
   # Omniauth-related
   def self.from_omniauth(auth)
-    puts "auth : " + auth.to_yaml
+    puts "---- auth : " + auth.to_yaml
+    puts "---- slice : " + auth.slice("provider", "uid").to_yaml
     user = where(auth.slice("provider", "uid")).first
+    puts "---- user : " + user.to_yaml 
     if user
       user.token = auth["credentials"]["token"]
       user
