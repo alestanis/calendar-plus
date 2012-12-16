@@ -16,7 +16,6 @@ class User
   def self.from_omniauth(auth)
     puts "---- auth : " + auth.to_json
     puts "---- slice : " + auth.slice("provider", "uid").to_json
-    puts "---- where : " + where(auth.slice("provider", "uid"))
     user = where(auth.slice("provider", "uid")).first
     puts "---- user : " + user.to_json
     if user
