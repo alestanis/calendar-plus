@@ -4,6 +4,9 @@ require 'google/api_client'
 class User
   include Mongoid::Document
   
+  before_create :dump_before
+  after_create :dump_after
+  
   field :provider, type: String
   field :uid, type: String
   field :name, type: String
@@ -11,6 +14,14 @@ class User
   field :updated, type: DateTime, default: Time.now - 7.days
   
   embeds_many :events
+  
+  def dump_before
+     puts "Before create User Event"
+  end
+  
+  def dump_after
+     puts "After create User Event"
+  end
   
   # Omniauth-related
   def self.from_omniauth(auth)

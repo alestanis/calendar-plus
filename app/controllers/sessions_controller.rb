@@ -1,7 +1,8 @@
 class SessionsController < CalendarController #ApplicationController
   def create
     # Get or create the user
-    logger.debug env["omniauth.auth"].to_yaml
+    puts "creating new Session"
+    puts env["omniauth.auth"].to_yaml
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     session[:token] = env["omniauth.auth"]["credentials"]["token"]
