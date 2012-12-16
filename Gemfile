@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+# Heroku uses ruby 1.9.2, incompatible with mongodb
+source "https://rubygems.org"
+ruby "1.9.3"
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails'
 
 gem 'bootstrap-sass'
 gem 'devise'
