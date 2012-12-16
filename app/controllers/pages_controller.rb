@@ -1,5 +1,28 @@
 class PagesController < CalendarController #ApplicationController  
+  def events
+    get_info()
+    render :index
+  end
+  
   def index
+    get_info()
+  end
+  
+  def tour
+    get_info()
+    
+    @distances = (1..@events.length).map do |i|
+      directions = Gmaps4rails.destination({
+        "from" => @events[i-1].location,
+        "to" => @events[i % @events.length].location
+      })
+      distance = directions.first["distance"]["text"] # "17.2 mi"
+      duration = directions.first["duration"]["text"] # "22 mins"
+      { dist: distance, dur: duration }
+    end if @events.length > 1
+  end
+  
+  def get_info
     if current_user
       @calendars = get_calendars
       @calendar = @calendars.first.id if @calendars.first

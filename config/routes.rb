@@ -2,7 +2,9 @@ Calendar::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   
-  root :to => 'pages#index'
+  root to: 'pages#index'
+  match 'events', to: 'pages#events'
+  match 'tour', to: 'pages#tour'
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'

@@ -30,4 +30,12 @@ class Event
   def gmaps4rails_address
     self.location
   end
+  
+  def short_start
+    self.start # TODO
+  end
+  
+  def short_end
+    self.end # TODO
+  end
 end
