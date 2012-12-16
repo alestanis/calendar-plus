@@ -2,7 +2,7 @@ class PagesController < CalendarController #ApplicationController
   def index
     if current_user
       @calendars = get_calendars
-      @calendar = @calendars.first.id
+      @calendar = @calendars.first.id if @calendars.first
       
       # Get today's events
       @events = current_user.events.today
