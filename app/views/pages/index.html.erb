@@ -48,6 +48,7 @@
   <!-- </div> -->
 </div>
 
+<% if Rails.env.development? %>
 <div class="container-fluid debug-margin">       
 <% if current_user %> 
   <p> User token is <code><%= current_user.token %></code></p>
@@ -68,3 +69,4 @@
 
 <% end %>
 </div> <!-- End container -->
+<% end %>
