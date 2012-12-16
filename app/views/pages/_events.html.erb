@@ -1,0 +1,27 @@
+<% if current_user %> 
+<div class="span4 well pull-right margins">
+  <h4> Today's events are: </h4>
+    <% if @events.length > 0 %>
+      <table class="table table-condensed">
+      <thead><th>What?</th><th>When?</th><th>Where?</th></thead>
+      <tbody>
+      <% @events.each do |event| %>
+        <tr>
+        <td><%= event.summary %></td>
+        <td>
+        <% if event.start %>
+          <%= event.short_start %> to <%= event.short_end %>
+        <% else %>
+          All day
+        <% end %>
+        </td>
+        <td><%= event.location %></td>
+        </tr>
+      <% end %>
+      </tbody>
+      </table>
+    <% else %>
+    <p> You have no events scheduled for today. </p>
+    <% end %>
+</div>
+<% end %>

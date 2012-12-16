@@ -1,0 +1,23 @@
+<!-- index.html.erb -->
+
+<%= render(:layout => 'pages/map', locals: {right_block: 'pages/tour_info'}) do %> 
+  <%= gmaps({
+    # "markers" => {"data" => @markers.to_json},
+    "map_options" => {
+      :container_class => "stretch",
+      :class => "stretch",
+      :raw => '{ scrollwheel: false, mapTypeControl: false }'
+    },
+    "direction" => {
+      "data" => {
+        "from" => @marker_coords[0],
+        "to" => @marker_coords[0]
+      },
+      "options" => {
+        "waypoints" => @marker_coords.drop(1),
+        "display_panel" => true, 
+        "panel_id" => "instructions"
+      }
+    }
+  }) %>
+<% end %>

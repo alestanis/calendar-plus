@@ -1,0 +1,52 @@
+<!-- map.html.erb partial -->
+<!-- Takes a block as input containing a gmaps object -->
+
+<div class="container-fluid stretch-nav">
+  <!-- <div class="row-fluid"> -->
+  
+  <%= render right_block %>
+  
+  <!-- Map -->
+  <% if current_user and @events.length > 0 %>   
+    <%= yield %>
+  <% else %>
+    <%= gmaps({
+      "map_options" => {
+        :container_class => "stretch",
+        :class => "stretch",
+        :detect_location => true,
+        :center_on_user => true,
+        :zoom => 12,
+        :raw => '{ scrollwheel: false }'
+      }
+    }) %>
+  <% end %>
+  <!-- End map -->
+  
+  <!-- </div> -->
+</div>
+
+<% if Rails.env.development? %>
+<div class="container-fluid debug-margin">       
+  <% if current_user %> 
+    <p> User token is <code><%= current_user.token %></code></p>
+    </br>
+  
+    <p>Calendar list is:
+    <code>
+    <%= @calendars %>
+    </code>
+    </p>
+  
+    <p>
+    First id is: <code><%= @calendar %></code>
+    </p>
+  <% else %>
+
+  <% end %>
+
+</div> <!-- End container -->
+<% end %>
+
+<!-- Scripts needed for gmaps -->
+<%= yield :scripts %>
