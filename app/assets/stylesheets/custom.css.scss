@@ -9,7 +9,7 @@
 }
 
 @mixin debug {
-  visibility: hidden;
+  display: none;
 }
 
 @mixin stretch {
