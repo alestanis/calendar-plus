@@ -14,7 +14,7 @@ class SessionsController < CalendarController #ApplicationController
   end
 
   def destroy
-    User.delete(user.id)
+    User.delete(session[:user_id])
     session[:user_id] = nil
     session[:token] = nil
     redirect_to root_url, notice: "Signed out!"
