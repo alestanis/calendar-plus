@@ -32,12 +32,13 @@ class CalendarController < ApplicationController
     if google_updated_events.length > 0
       google_updated_events.each do |event|
         new_event = current_user.events.find_or_create_by(g_id: event.id)
+        puts event
         new_event.update_attributes!({
           'g_id' => event.id,
           'summary' => event.summary,
           'description' => event.description,
-          'start' => event.start["dateTime"],
-          'end' => event.end["dateTime"],
+          'start' => event.start ? event.start["dateTime"] : nil,
+          'end' => event.end ? event.end["dateTime"] : nil,
           'location' => event.location
         })
       end
