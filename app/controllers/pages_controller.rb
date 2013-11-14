@@ -28,6 +28,7 @@ class PagesController < CalendarController #ApplicationController
       @calendar = @calendars.first.id if @calendars.first
       
       # Get today's events
+      update_events
       @events = current_user.events.today
       
       # Get the markers to display in the map
