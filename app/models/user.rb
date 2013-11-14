@@ -27,7 +27,7 @@ class User
     create! do |user|
       user.provider = auth["provider"]
       user.uid = auth["uid"] # Email for google
-      user.name = auth["uid"].split('@')[0] # Login of gmail account, "user" in "user@gmail.com"
+      user.name = auth["info"]["email"].split('@')[0] # Login of gmail account, "user" in "user@gmail.com"
     end
   end
 end
