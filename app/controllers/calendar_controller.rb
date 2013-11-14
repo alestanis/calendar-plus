@@ -27,8 +27,8 @@ class CalendarController < ApplicationController
   # Add updated events to the user local model
   def update_events
     # TODO: handle simple "date" in "all day" events
-    # TODO: handle deletions
     google_updated_events = get_updated_events
+    current_user.events.destroy_all
     if google_updated_events.length > 0
       google_updated_events.each do |event|
         new_event = current_user.events.find_or_create_by(g_id: event.id)
